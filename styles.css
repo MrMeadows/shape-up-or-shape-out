@@ -1,0 +1,18 @@
+main {
+    margin-left: 160px;
+}
+
+#easel {
+    width: 600px;
+    height: 600px;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+#shapeInfo {
+    width: 200px;
+    height: 600px;
+    border: 2px solid black;
+    border-radius: 8px;
+    background-color: #FFF4F3;
+}

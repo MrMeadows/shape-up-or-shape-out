@@ -4,34 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shape Up or Shape Out</title>
-    <link rel="stylesheet" href="styles.css" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+
 </head>
 <body>
+    <head class="container-fluid">
+        <h1 class="">Welcome to the Thunderdome</h1>
+    </head>
     <main class="container my-5">
-        <form>
-            <div class="mb-3">
+
+        <form autocomplete="off">
+            <div class="mb-3 input-group">
+                <button class="btn btn-primary " id="insertRectangleBtn">Insert Rectangle</button>
                 <input type="text" class="form-control" id="rectangleWidth" placeholder="Rectangle Width (eg. 100)">
                 <input type="text" class="form-control" id="rectangleHeight" placeholder="Rectangle Height (eg. 100)">
-                <button class="btn btn-primary" id="insertRectangleBtn">Insert Rectangle</button>
             </div>
-            <div class="mb-3">
-                <label for="squareInput"></label>
-                <input type="text" class="form-control" id="squareSideLength" placeholder="Square Side Length (eg. 25)">
-                <button class="btn btn-primary" id="insertSquareBtn">Insert Square</button> 
-            </div>
-            <div class="mb-3">
-                <label for="circleInput"></label>
-                <input type="text" class="form-control" id="circleSideLength" placeholder="Circle Side Radius (eg. 30)">
-                <button class="btn btn-primary" id="circleBtn">Insert Circle</button>
-            </div>
-            <div class="mb-3">
-                <label for="triangleInput"></label>
-                <input type="text" class="form-control" id="triangleSideLength" placeholder="Triangle Height (eg. 10)">
-                <button class="btn btn-primary" id="insertTriangleBtn">Insert Triangle
+            <div class="row">
+                <div class="mb-3 input-group col">
+                    <button class="btn btn-primary col-4" id="insertSquareBtn">Insert Square</button> 
+                    <input type="text" class="form-control col-8" id="squareSideLength" placeholder="Square Side Length (eg. 25)">
+                </div>
+
+                <div class="mb-3 input-group col">
+                    <button class="btn btn-primary col-4" id="circleBtn">Insert Circle</button>
+                    <input type="text" class="form-control col-8" id="circleSideLength" placeholder="Circle Side Radius (eg. 30)">
+                </div>
+
+                <div class="mb-3 input-group col">
+                    <button class="btn btn-primary col-4" id="insertTriangleBtn">Insert Triangle</button>
+                    <input type="text" class="form-control col-8" id="triangleSideLength" placeholder="Triangle Height (eg. 10)">
+                </div>
             </div>
         </form>
+        <div class="container row flex-nowrap justify-content-center">
+            <div class="col-9 my-5" id="easel">
+
+            </div>
+            <div class="col-3 my-5" id="shapeInfo">
+            </div>
+        </div>
     </main>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="script.js"></script>
