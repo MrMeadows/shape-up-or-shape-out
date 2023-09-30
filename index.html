@@ -16,29 +16,29 @@
 
         <form autocomplete="off">
             <div class="mb-3 input-group">
-                <button class="btn btn-primary" id="insertRectangleBtn">Insert Rectangle</button>
-                <input type="text" class="form-control" id="rectangleWidth" placeholder="Rectangle Width (eg. 100)">
-                <input type="text" class="form-control" id="rectangleHeight" placeholder="Rectangle Height (eg. 100)">
+                <button type="button" class="btn btn-primary" id="insertRectangleBtn">Insert Rectangle</button>
+                <input type="number" class="form-control" id="rectangleWidth" placeholder="Width (eg. 100)">
+                <input type="number" class="form-control" id="rectangleHeight" placeholder="Height (eg. 100)">
             </div>
             <div class="row">
                 <div class="mb-3 input-group col">
-                    <button class="btn btn-primary col-4" id="insertSquareBtn">Insert Square</button> 
-                    <input type="text" class="form-control col-8" id="squareSideLength" placeholder="Square Side Length (eg. 25)">
+                    <button type="button" class="btn btn-primary col-4" id="insertSquareBtn">Insert Square</button> 
+                    <input type="number" class="form-control col-8" id="squareWidth" placeholder="Side Length (eg. 25)">
                 </div>
 
                 <div class="mb-3 input-group col">
-                    <button class="btn btn-primary col-4" id="circleBtn">Insert Circle</button>
-                    <input type="text" class="form-control col-8" id="circleSideLength" placeholder="Circle Side Radius (eg. 30)">
+                    <button type="button" class="btn btn-primary col-4" id="insertCircleBtn">Insert Circle</button>
+                    <input type="number" class="form-control col-8" id="circleRadius" placeholder="Radius (eg. 30)">
                 </div>
 
                 <div class="mb-3 input-group col">
-                    <button class="btn btn-primary col-4" id="insertTriangleBtn">Insert Triangle</button>
-                    <input type="text" class="form-control col-8" id="triangleSideLength" placeholder="Triangle Height (eg. 10)">
+                    <button type="button" class="btn btn-primary col-4" id="insertTriangleBtn">Insert Triangle</button>
+                    <input type="number" class="form-control col-8" id="triangleHeight" placeholder="Height (eg. 10)">
                 </div>
             </div>
         </form>
         <div class="container row flex-nowrap justify-content-center">
-            <div class="col-9 my-5" id="easel">
+            <div class="col-9 my-5" id="canvas">
 
             </div>
             <div class="col-3 my-5" id="shapeInfo">

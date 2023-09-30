@@ -2,11 +2,13 @@ main {
     margin-left: 160px;
 }
 
-#easel {
+#canvas {
     width: 600px;
     height: 600px;
     border: 2px solid black;
     border-radius: 8px;
+    position: relative;
+    overflow: hidden;
 }
 
 #shapeInfo {
@@ -15,4 +17,20 @@ main {
     border: 2px solid black;
     border-radius: 8px;
     background-color: #FFF4F3;
+}
+
+.square {
+    background-color: #FF4F39;
+}
+
+.circle {
+    background-color: #D195F8;
+}
+
+.triangle {
+    background-color: #EDD75F;
+}
+
+.rectangle {
+    background-color: #4B8D31;
 }
