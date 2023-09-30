@@ -27,9 +27,11 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Square extends Rectangle {
-        constructor(x, y, sideLength) {
+        constructor(x, y) {
             super(x, y)
-            this.sideLength = sideLength
+            let sideLengthVal = document.getElementById('squareSideLength').value;
+            this.div.style.width = `${sideLengthVal}px`;
+            this.div.style.height = `${sideLengthVal}px`;
             this.div.classList.replace('rectangle', 'square');
         }        
     }
@@ -45,8 +47,12 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Triangle extends Shape {
-        constructor(height) {
+        constructor(x, y) {
             super(x, y);
+            let height = document.getElementById('triangleHeight').value;
+            this.div.style.borderBottom = `${height}px solid #EDD75F`;
+            this.div.style.borderLeft = `${(height/2)}px solid transparent`;
+            this.div.style.borderRight = `${(height/2)}px solid transparent`;
             this.div.classList.add('triangle');
         }        
     }
@@ -69,7 +75,9 @@ window.addEventListener('DOMContentLoaded', function () {
     })
 
     squareBtn.addEventListener('click', function () {
-        new Square
+        let xVal = randomVal(0, maxVal);
+        let yVal = randomVal(0, maxVal);
+        let square = new Square(xVal, yVal);
     })
 
     circleBtn.addEventListener('click', function () {
@@ -79,7 +87,9 @@ window.addEventListener('DOMContentLoaded', function () {
     })
 
     triangleBtn.addEventListener('click', function () {
-        new Triangle
+        let xVal = randomVal(0, maxVal);
+        let yVal = randomVal(0, maxVal);
+        let triangle = new Triangle(xVal, yVal);
     })
 
 

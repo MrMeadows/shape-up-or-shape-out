@@ -16,6 +16,7 @@ main {
     height: 600px;
     border: 2px solid black;
     border-radius: 8px;
+    margin-left: 8px;
     background-color: #FFF4F3;
 }
 
@@ -31,8 +32,9 @@ main {
 }
 
 .triangle {
-    background-color: #EDD75F;
     position: absolute;
+    height: 0;
+    width: 0;
 }
 
 .rectangle {
