@@ -21,16 +21,21 @@ main {
 
 .square {
     background-color: #FF4F39;
+    position: absolute;
 }
 
 .circle {
     background-color: #D195F8;
+    border-radius: 50%;
+    position: absolute;
 }
 
 .triangle {
     background-color: #EDD75F;
+    position: absolute;
 }
 
 .rectangle {
-    background-color: #4B8D31;
+    background-color: #affc82;
+    position: absolute;
 }

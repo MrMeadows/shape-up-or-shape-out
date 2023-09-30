@@ -1,11 +1,10 @@
 window.addEventListener('DOMContentLoaded', function () {
 
     class Shape {
-        constructor(x, y) {
+        constructor(x, y, width, height) {
             this.div = document.createElement('div');
             this.div.style.left = `${x}px`;
             this.div.style.top = `${y}px`;
-            this.div.style.position = 'absolute'
 
             canvas.appendChild(this.div)
         }
@@ -17,7 +16,7 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Rectangle extends Shape {
-        constructor(x, y, width, height) {
+        constructor(x, y) {
             super(x, y)
             let widthVal = document.getElementById('rectangleWidth').value;
             let heightVal = document.getElementById('rectangleHeight').value;
@@ -36,8 +35,11 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Circle extends Shape {
-        constructor(radius) {
+        constructor(x, y) {
             super(x, y);
+            let radiusVal = document.getElementById('circleRadius').value;
+            this.div.style.width = `${radiusVal}px`;
+            this.div.style.height = `${radiusVal}px`;
             this.div.classList.add('circle');
         }
     }
@@ -71,7 +73,9 @@ window.addEventListener('DOMContentLoaded', function () {
     })
 
     circleBtn.addEventListener('click', function () {
-        new Circle
+        let xVal = randomVal(0, maxVal)
+        let yVal = randomVal(0, maxVal)
+        let circle = new Circle(xVal, yVal)
     })
 
     triangleBtn.addEventListener('click', function () {
