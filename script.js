@@ -1,17 +1,21 @@
 window.addEventListener('DOMContentLoaded', function () {
 
     class Shape {
-        constructor(name, x, y) {
+        constructor(name, width, x, y) {
             this.div = document.createElement('div');
             this.name = name;
+            this.width = width;
             this.div.style.left = `${x}px`;
             this.div.style.top = `${y}px`;
 
             canvas.appendChild(this.div)
 
             this.div.addEventListener('click', () => {
-                let shapeName = document.createTextNode(this.name)
+                let shapeName = document.createTextNode(this.name);
+                let shapeWidth = document.createTextNode(`${this.width}px`);
                 let clickedShapeName = document.getElementById('clickedShapeName');
+                let clickedShapeWidth = document.getElementById('clickedShapeWidth');
+
                 if (clickedShapeName.childNodes.length > 0) {
                     clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
                 }
@@ -31,6 +35,7 @@ window.addEventListener('DOMContentLoaded', function () {
                     clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
                 }
                 clickedShapeName.appendChild(shapeName);
+                clickedShapeWidth.appendChild(shapeWidth);
             })
         }
 
