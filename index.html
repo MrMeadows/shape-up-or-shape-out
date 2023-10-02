@@ -9,39 +9,76 @@
 
 </head>
 <body>
-    <header class="container-fluid bg-dark">
-        <h1 class="text-center fw-bold text-light p-3">Welcome to the Thunderdome</h1>
+    <header class="container-fluid">
+        <h1 class="text-center p-3 m-0">Welcome to the Thunderdome!</h1>
     </header>
     <main class="container my-5">
 
         <form autocomplete="off">
             <div class="mb-3 input-group">
-                <button type="button" class="btn btn-primary" id="insertRectangleBtn">Insert Rectangle</button>
+                <button type="button" class="btn btn-success" id="insertRectangleBtn">Insert Rectangle</button>
                 <input type="number" class="form-control" id="rectangleWidth" placeholder="Width (eg. 100)">
-                <input type="number" class="form-control" id="rectangleHeight" placeholder="Height (eg. 100)">
+                <input type="number" class="form-control" id="rectangleHeight" placeholder="Height (eg. 60)">
             </div>
             <div class="row">
                 <div class="mb-3 input-group col">
-                    <button type="button" class="btn btn-primary col-4" id="insertSquareBtn">Insert Square</button> 
+                    <button type="button" class="btn btn-danger col-4" id="insertSquareBtn">Insert Square</button> 
                     <input type="number" class="form-control col-8" id="squareSideLength" placeholder="Side Length (eg. 25)">
                 </div>
 
                 <div class="mb-3 input-group col">
-                    <button type="button" class="btn btn-primary col-4" id="insertCircleBtn">Insert Circle</button>
+                    <button type="button" class="circleBtn btn col-4" id="insertCircleBtn">Insert Circle</button>
                     <input type="number" class="form-control col-8" id="circleRadius" placeholder="Radius (eg. 30)">
                 </div>
 
                 <div class="mb-3 input-group col">
-                    <button type="button" class="btn btn-primary col-4" id="insertTriangleBtn">Insert Triangle</button>
-                    <input type="number" class="form-control col-8" id="triangleHeight" placeholder="Height (eg. 10)">
+                    <button type="button" class="btn btn-warning col-4" id="insertTriangleBtn">Insert Triangle</button>
+                    <input type="number" class="form-control col-8" id="triangleHeight" placeholder="Height (eg. 40)">
                 </div>
             </div>
         </form>
         <div class="container row flex-nowrap justify-content-center">
             <div class="col-9 my-5" id="canvas">
-
             </div>
-            <div class="col-3 my-5" id="shapeInfo">
+            <div class="col-3 my-5 bg-primary d-flex align-items-center" id="shapeInfo">
+                <div class="d-flex flex-wrap h-100 py-3">
+                    <div class="container d-flex align-items-center">
+                        <div class="input-group">
+                            <label class="input-group-text bg-primary-subtle border border-dark">Shape</label>
+                            <label class="form-control border border-dark px-0 text-center" id="clickedShapeName"></label>
+                        </div>
+                    </div>
+                    <div class="container d-flex align-items-center">
+                        <div class="input-group">
+                            <label class="input-group-text bg-primary-subtle border border-dark">Width</label>
+                            <label class="form-control border border-dark px-0 text-center" id="clickedShapeWidth"></label>
+                        </div>
+                    </div>
+                    <div class="container d-flex align-items-center">
+                        <div class="input-group">
+                            <label class="input-group-text bg-primary-subtle border border-dark">Height</label>
+                            <label class="form-control border border-dark px-0 text-center" id="clickedShapeHeight"></label>
+                        </div>
+                    </div>
+                    <div class="container d-flex align-items-center">
+                        <div class="input-group">
+                            <label class="input-group-text bg-primary-subtle border border-dark">Radius</label>
+                            <label class="form-control border border-dark px-0 text-center" id="clickedShapeRadius"></label>
+                        </div>
+                    </div>
+                    <div class="container d-flex align-items-center">
+                        <div class="input-group">
+                            <label class="input-group-text bg-primary-subtle border border-dark">Area</label>
+                            <label class="form-control border border-dark px-0 text-center" id="clickedShapeArea"></label>
+                        </div>
+                    </div>
+                    <div class="container d-flex align-items-center">
+                        <div class="input-group">
+                            <label class="input-group-text bg-primary-subtle border border-dark">Perimeter</label>
+                            <label class="form-control border border-dark px-0 text-center" id="clickedShapePerimeter"></label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
