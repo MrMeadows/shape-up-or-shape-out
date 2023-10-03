@@ -21,6 +21,7 @@ window.addEventListener('DOMContentLoaded', function () {
             this.div.classList.add('rectangle')
 
             this.div.addEventListener('click', this.describe);
+            this.div.addEventListener('dblclick', this.deleteSelf);
         }
 
         describe = () => {
@@ -67,60 +68,83 @@ window.addEventListener('DOMContentLoaded', function () {
             clickedShapeArea.appendChild(shapeArea);
             clickedShapePerimeter.appendChild(shapePerimeter);
         }
+
+        deleteSelf = () => {
+            clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
+            clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
+            clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
+            clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
+            clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
+            clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
+            canvas.removeChild(this.div);
+        }
     }
 
-    class Square extends Rectangle {
+    class Square extends Shape {
         constructor(x, y) {
-            super(x, y)
+            super(x, y);
             let sideLengthVal = document.getElementById('squareSideLength').value;
             this.div.style.width = `${sideLengthVal}px`;
             this.div.style.height = `${sideLengthVal}px`;
-            this.div.classList.replace('rectangle', 'square');
+            this.div.classList.add('square');
 
-            this.div.addEventListener('click', function() {
-                let shapeName = this.classList[0].charAt(0).toUpperCase() + this.classList[0].slice(1);
-                let grammaredShapeName = document.createTextNode(shapeName);
-                let sideLengthVal = document.getElementById('squareSideLength').value;
-                let shapeWidth = document.createTextNode(`${sideLengthVal}px`);
-                let shapeHeight = document.createTextNode(`${sideLengthVal}px`);
-                let shapeRadius = document.createTextNode('N/A');
-                let shapeArea = document.createTextNode(`${(sideLengthVal*sideLengthVal)}px`);
-                let shapePerimeter = document.createTextNode(`${sideLengthVal*4}px`);
+            this.div.addEventListener('click', this.describe);
+            this.div.addEventListener('dblclick', this.deleteSelf);
+        }
 
-                let clickedShapeName = document.getElementById('clickedShapeName');
-                let clickedShapeWidth = document.getElementById('clickedShapeWidth');
-                let clickedShapeHeight = document.getElementById('clickedShapeHeight');
-                let clickedShapeRadius = document.getElementById('clickedShapeRadius');
-                let clickedShapeArea = document.getElementById('clickedShapeArea');
-                let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
+        describe = () => {
+            let shapeName = this.div.classList[0].charAt(0).toUpperCase() + this.div.classList[0].slice(1);
+            let grammaredShapeName = document.createTextNode(shapeName);
+            let sideLengthVal = document.getElementById('squareSideLength').value;
+            let shapeWidth = document.createTextNode(`${sideLengthVal}px`);
+            let shapeHeight = document.createTextNode(`${sideLengthVal}px`);
+            let shapeRadius = document.createTextNode('N/A');
+            let shapeArea = document.createTextNode(`${(sideLengthVal*sideLengthVal)}px`);
+            let shapePerimeter = document.createTextNode(`${sideLengthVal*4}px`);
 
-                if (clickedShapeName.childNodes.length > 0) {
-                    clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
-                }
-                if (clickedShapeWidth.childNodes.length > 0) {
-                    clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-                }
-                if (clickedShapeHeight.childNodes.length > 0) {
-                    clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-                }
-                if (clickedShapeRadius.childNodes.length > 0) {
-                    clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-                }
-                if (clickedShapeArea.childNodes.length > 0) {
-                    clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-                }
-                if (clickedShapePerimeter.childNodes.length > 0) {
-                    clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-                }
+            let clickedShapeName = document.getElementById('clickedShapeName');
+            let clickedShapeWidth = document.getElementById('clickedShapeWidth');
+            let clickedShapeHeight = document.getElementById('clickedShapeHeight');
+            let clickedShapeRadius = document.getElementById('clickedShapeRadius');
+            let clickedShapeArea = document.getElementById('clickedShapeArea');
+            let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
 
-                clickedShapeName.appendChild(grammaredShapeName);
-                clickedShapeWidth.appendChild(shapeWidth);
-                clickedShapeHeight.appendChild(shapeHeight);
-                clickedShapeRadius.appendChild(shapeRadius);
-                clickedShapeArea.appendChild(shapeArea);
-                clickedShapePerimeter.appendChild(shapePerimeter);
-            })
-        }        
+            if (clickedShapeName.childNodes.length > 0) {
+                clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
+            }
+            if (clickedShapeWidth.childNodes.length > 0) {
+                clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
+            }
+            if (clickedShapeHeight.childNodes.length > 0) {
+                clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
+            }
+            if (clickedShapeRadius.childNodes.length > 0) {
+                clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
+            }
+            if (clickedShapeArea.childNodes.length > 0) {
+                clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
+            }
+            if (clickedShapePerimeter.childNodes.length > 0) {
+                clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
+            }
+
+            clickedShapeName.appendChild(grammaredShapeName);
+            clickedShapeWidth.appendChild(shapeWidth);
+            clickedShapeHeight.appendChild(shapeHeight);
+            clickedShapeRadius.appendChild(shapeRadius);
+            clickedShapeArea.appendChild(shapeArea);
+            clickedShapePerimeter.appendChild(shapePerimeter);
+        }
+
+        deleteSelf = () => {
+            clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
+            clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
+            clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
+            clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
+            clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
+            clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
+            canvas.removeChild(this.div);
+        }
     }
 
     class Circle extends Shape {
@@ -131,49 +155,62 @@ window.addEventListener('DOMContentLoaded', function () {
             this.div.style.height = `${radiusVal}px`;
             this.div.classList.add('circle');
 
-            this.div.addEventListener('click', function() {
-                let shapeName = this.classList[0].charAt(0).toUpperCase() + this.classList[0].slice(1);
-                let grammaredShapeName = document.createTextNode(shapeName);
-                let radiusVal = document.getElementById('circleRadius').value;
-                let shapeWidth = document.createTextNode(`${radiusVal*2}px`);
-                let shapeHeight = document.createTextNode(`${radiusVal*2}px`);
-                let shapeRadius = document.createTextNode(`${radiusVal}px`);
-                let shapeArea = document.createTextNode(`${(3.14*radiusVal)**2}px`);
-                let shapePerimeter = document.createTextNode(`${2*3.14*radiusVal}px`);
+            this.div.addEventListener('click', this.describe);
+            this.div.addEventListener('dblclick', this.deleteSelf);
+        }
 
-                let clickedShapeName = document.getElementById('clickedShapeName');
-                let clickedShapeWidth = document.getElementById('clickedShapeWidth');
-                let clickedShapeHeight = document.getElementById('clickedShapeHeight');
-                let clickedShapeRadius = document.getElementById('clickedShapeRadius');
-                let clickedShapeArea = document.getElementById('clickedShapeArea');
-                let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
+        describe = () => {
+            let shapeName = this.div.classList[0].charAt(0).toUpperCase() + this.div.classList[0].slice(1);
+            let grammaredShapeName = document.createTextNode(shapeName);
+            let radiusVal = document.getElementById('circleRadius').value;
+            let shapeWidth = document.createTextNode(`${radiusVal*2}px`);
+            let shapeHeight = document.createTextNode(`${radiusVal*2}px`);
+            let shapeRadius = document.createTextNode(`${radiusVal}px`);
+            let shapeArea = document.createTextNode(`${(3.14*radiusVal)**2}px`);
+            let shapePerimeter = document.createTextNode(`${2*3.14*radiusVal}px`);
 
-                if (clickedShapeName.childNodes.length > 0) {
-                    clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
-                }
-                if (clickedShapeWidth.childNodes.length > 0) {
-                    clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-                }
-                if (clickedShapeHeight.childNodes.length > 0) {
-                    clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-                }
-                if (clickedShapeRadius.childNodes.length > 0) {
-                    clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-                }
-                if (clickedShapeArea.childNodes.length > 0) {
-                    clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-                }
-                if (clickedShapePerimeter.childNodes.length > 0) {
-                    clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-                }
+            let clickedShapeName = document.getElementById('clickedShapeName');
+            let clickedShapeWidth = document.getElementById('clickedShapeWidth');
+            let clickedShapeHeight = document.getElementById('clickedShapeHeight');
+            let clickedShapeRadius = document.getElementById('clickedShapeRadius');
+            let clickedShapeArea = document.getElementById('clickedShapeArea');
+            let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
 
-                clickedShapeName.appendChild(grammaredShapeName);
-                clickedShapeWidth.appendChild(shapeWidth);
-                clickedShapeHeight.appendChild(shapeHeight);
-                clickedShapeRadius.appendChild(shapeRadius);
-                clickedShapeArea.appendChild(shapeArea);
-                clickedShapePerimeter.appendChild(shapePerimeter);
-            })
+            if (clickedShapeName.childNodes.length > 0) {
+                clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
+            }
+            if (clickedShapeWidth.childNodes.length > 0) {
+                clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
+            }
+            if (clickedShapeHeight.childNodes.length > 0) {
+                clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
+            }
+            if (clickedShapeRadius.childNodes.length > 0) {
+                clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
+            }
+            if (clickedShapeArea.childNodes.length > 0) {
+                clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
+            }
+            if (clickedShapePerimeter.childNodes.length > 0) {
+                clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
+            }
+
+            clickedShapeName.appendChild(grammaredShapeName);
+            clickedShapeWidth.appendChild(shapeWidth);
+            clickedShapeHeight.appendChild(shapeHeight);
+            clickedShapeRadius.appendChild(shapeRadius);
+            clickedShapeArea.appendChild(shapeArea);
+            clickedShapePerimeter.appendChild(shapePerimeter);
+        }
+
+        deleteSelf = () => {
+            clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
+            clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
+            clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
+            clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
+            clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
+            clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
+            canvas.removeChild(this.div);
         }
     }
 
@@ -186,50 +223,63 @@ window.addEventListener('DOMContentLoaded', function () {
             this.div.style.borderRight = `${(height/2)}px solid transparent`;
             this.div.classList.add('triangle');
 
-            this.div.addEventListener('click', function () {
-                let shapeName = this.classList[0].charAt(0).toUpperCase() + this.classList[0].slice(1);
-                let grammaredShapeName = document.createTextNode(shapeName);
-                let height = document.getElementById('triangleHeight').value;
-                let shapeWidth = document.createTextNode(`${height}px`);
-                let shapeHeight = document.createTextNode(`${height}px`);
-                let shapeRadius = document.createTextNode('N/A');
-                let shapeArea = document.createTextNode(`${(height*height)/2}px`);
-                let shapePerimeter = document.createTextNode(`${height*3}px`);
+            this.div.addEventListener('click', this.describe);
+            this.div.addEventListener('dblclick', this.deleteSelf);
+        }
 
-                let clickedShapeName = document.getElementById('clickedShapeName');
-                let clickedShapeWidth = document.getElementById('clickedShapeWidth');
-                let clickedShapeHeight = document.getElementById('clickedShapeHeight');
-                let clickedShapeRadius = document.getElementById('clickedShapeRadius');
-                let clickedShapeArea = document.getElementById('clickedShapeArea');
-                let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
+        describe = () => {
+            let shapeName = this.div.classList[0].charAt(0).toUpperCase() + this.div.classList[0].slice(1);
+            let grammaredShapeName = document.createTextNode(shapeName);
+            let height = document.getElementById('triangleHeight').value;
+            let shapeWidth = document.createTextNode(`${height}px`);
+            let shapeHeight = document.createTextNode(`${height}px`);
+            let shapeRadius = document.createTextNode('N/A');
+            let shapeArea = document.createTextNode(`${(height*height)/2}px`);
+            let shapePerimeter = document.createTextNode(`${height*3}px`);
 
-                if (clickedShapeName.childNodes.length > 0) {
-                    clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
-                }
-                if (clickedShapeWidth.childNodes.length > 0) {
-                    clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-                }
-                if (clickedShapeHeight.childNodes.length > 0) {
-                    clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-                }
-                if (clickedShapeRadius.childNodes.length > 0) {
-                    clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-                }
-                if (clickedShapeArea.childNodes.length > 0) {
-                    clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-                }
-                if (clickedShapePerimeter.childNodes.length > 0) {
-                    clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-                }
+            let clickedShapeName = document.getElementById('clickedShapeName');
+            let clickedShapeWidth = document.getElementById('clickedShapeWidth');
+            let clickedShapeHeight = document.getElementById('clickedShapeHeight');
+            let clickedShapeRadius = document.getElementById('clickedShapeRadius');
+            let clickedShapeArea = document.getElementById('clickedShapeArea');
+            let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
 
-                clickedShapeName.appendChild(grammaredShapeName);
-                clickedShapeWidth.appendChild(shapeWidth);
-                clickedShapeHeight.appendChild(shapeHeight);
-                clickedShapeRadius.appendChild(shapeRadius);
-                clickedShapeArea.appendChild(shapeArea);
-                clickedShapePerimeter.appendChild(shapePerimeter);
-            })
-        }        
+            if (clickedShapeName.childNodes.length > 0) {
+                clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
+            }
+            if (clickedShapeWidth.childNodes.length > 0) {
+                clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
+            }
+            if (clickedShapeHeight.childNodes.length > 0) {
+                clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
+            }
+            if (clickedShapeRadius.childNodes.length > 0) {
+                clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
+            }
+            if (clickedShapeArea.childNodes.length > 0) {
+                clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
+            }
+            if (clickedShapePerimeter.childNodes.length > 0) {
+                clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
+            }
+
+            clickedShapeName.appendChild(grammaredShapeName);
+            clickedShapeWidth.appendChild(shapeWidth);
+            clickedShapeHeight.appendChild(shapeHeight);
+            clickedShapeRadius.appendChild(shapeRadius);
+            clickedShapeArea.appendChild(shapeArea);
+            clickedShapePerimeter.appendChild(shapePerimeter);
+        }
+
+        deleteSelf = () => {
+            clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
+            clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
+            clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
+            clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
+            clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
+            clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
+            canvas.removeChild(this.div);
+        }       
     }
 
     let canvas = document.getElementById('canvas');
