@@ -1,41 +1,21 @@
 window.addEventListener('DOMContentLoaded', function () {
 
     class Shape {
-        constructor(name, width, x, y) {
+        constructor(x, y) {
             this.div = document.createElement('div');
-            this.name = name;
-            this.width = width;
             this.div.style.left = `${x}px`;
             this.div.style.top = `${y}px`;
 
             canvas.appendChild(this.div)
 
-            this.div.addEventListener('click', () => {
-                let shapeName = document.createTextNode(this.name);
-                let shapeWidth = document.createTextNode(`${this.width}px`);
+            this.div.addEventListener('click', function () {
+                let shapeName = this.classList[0].charAt(0).toUpperCase() + this.classList[0].slice(1);
+                let grammaredShapeName = document.createTextNode(shapeName);
                 let clickedShapeName = document.getElementById('clickedShapeName');
-                let clickedShapeWidth = document.getElementById('clickedShapeWidth');
-
                 if (clickedShapeName.childNodes.length > 0) {
                     clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
                 }
-                if (clickedShapeWidth.childNodes.length > 0) {
-                    clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-                }
-                if (clickedShapeHeight.childNodes.length > 0) {
-                    clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-                }
-                if (clickedShapeRadius.childNodes.length > 0) {
-                    clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-                }
-                if (clickedShapeArea.childNodes.length > 0) {
-                    clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-                }
-                if (clickedShapePerimeter.childNodes.length > 0) {
-                    clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-                }
-                clickedShapeName.appendChild(shapeName);
-                clickedShapeWidth.appendChild(shapeWidth);
+                clickedShapeName.appendChild(grammaredShapeName);
             })
         }
 
@@ -45,8 +25,8 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Rectangle extends Shape {
-        constructor(name, x, y) {
-            super(name, x, y)
+        constructor(x, y) {
+            super(x, y)
             let widthVal = document.getElementById('rectangleWidth').value;
             let heightVal = document.getElementById('rectangleHeight').value;
             this.div.style.width = `${widthVal}px`;
@@ -76,19 +56,19 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Square extends Rectangle {
-        constructor(name, x, y) {
-            super(name, x, y)
+        constructor(x, y) {
+            super(x, y)
             let sideLengthVal = document.getElementById('squareSideLength').value;
             this.div.style.width = `${sideLengthVal}px`;
             this.div.style.height = `${sideLengthVal}px`;
             this.div.classList.replace('rectangle', 'square');
 
             this.div.addEventListener('click', function() {
-                shapeWidth = document.createTextNode(`${sideLengthVal}px`);
-                shapeHeight = document.createTextNode(`${sideLengthVal}px`);
-                shapeRadius = document.createTextNode('N/A');
-                shapeArea = document.createTextNode(`${(sideLengthVal*sideLengthVal)}px`);
-                shapePerimeter = document.createTextNode(`${sideLengthVal*4}px`);
+                let shapeWidth = document.createTextNode(`${sideLengthVal}px`);
+                let shapeHeight = document.createTextNode(`${sideLengthVal}px`);
+                let shapeRadius = document.createTextNode('N/A');
+                let shapeArea = document.createTextNode(`${(sideLengthVal*sideLengthVal)}px`);
+                let shapePerimeter = document.createTextNode(`${sideLengthVal*4}px`);
 
                 let clickedShapeWidth = document.getElementById('clickedShapeWidth');
                 let clickedShapeHeight = document.getElementById('clickedShapeHeight');
@@ -106,8 +86,8 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Circle extends Shape {
-        constructor(name, x, y) {
-            super(name, x, y);
+        constructor(x, y) {
+            super(x, y);
             let radiusVal = document.getElementById('circleRadius').value;
             this.div.style.width = `${radiusVal}px`;
             this.div.style.height = `${radiusVal}px`;
@@ -136,8 +116,8 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Triangle extends Shape {
-        constructor(name, x, y) {
-            super(name, x, y);
+        constructor(x, y) {
+            super(x, y);
             let height = document.getElementById('triangleHeight').value;
             this.div.style.borderBottom = `${height}px solid #EDD75F`;
             this.div.style.borderLeft = `${(height/2)}px solid transparent`;
@@ -182,7 +162,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let xVal = randomVal(0, maxVal)
         let yVal = randomVal(0, maxVal)
         if (document.getElementById('rectangleWidth').value != '' && document.getElementById('rectangleHeight').value != '') {
-            let rectangle = new Rectangle('Rectangle', xVal, yVal)
+            let rectangle = new Rectangle(xVal, yVal)
         }
     })
 
@@ -190,7 +170,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let xVal = randomVal(0, maxVal);
         let yVal = randomVal(0, maxVal);
         if (document.getElementById('squareSideLength').value != '') {
-            let square = new Square('Square', xVal, yVal);
+            let square = new Square(xVal, yVal);
         }
     })
 
@@ -198,7 +178,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let xVal = randomVal(0, maxVal)
         let yVal = randomVal(0, maxVal)
         if (document.getElementById('circleRadius').value != '') {
-            let circle = new Circle('Circle', xVal, yVal)
+            let circle = new Circle(xVal, yVal)
         }
     })
 
@@ -206,7 +186,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let xVal = randomVal(0, maxVal);
         let yVal = randomVal(0, maxVal);
         if (document.getElementById('triangleHeight').value) {
-            let triangle = new Triangle('Triangle', xVal, yVal);
+            let triangle = new Triangle(xVal, yVal);
         }
     })
 
