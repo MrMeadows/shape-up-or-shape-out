@@ -315,7 +315,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let xVal = randomVal(0, maxVal)
         let yVal = randomVal(0, maxVal)
         if (document.getElementById('rectangleWidth').value != '' && document.getElementById('rectangleHeight').value != '') {
-            let rectangle = new Rectangle(xVal, yVal)
+            let rectangle = new Rectangle('Rectangle', xVal, yVal)
         }
     })
 
@@ -323,7 +323,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let xVal = randomVal(0, maxVal);
         let yVal = randomVal(0, maxVal);
         if (document.getElementById('squareSideLength').value != '') {
-            let square = new Square(xVal, yVal);
+            let square = new Square('Square', xVal, yVal);
         }
     })
 
@@ -331,7 +331,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let xVal = randomVal(0, maxVal)
         let yVal = randomVal(0, maxVal)
         if (document.getElementById('circleRadius').value != '') {
-            let circle = new Circle(xVal, yVal)
+            let circle = new Circle('Circle', xVal, yVal)
         }
     })
 
@@ -339,7 +339,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let xVal = randomVal(0, maxVal);
         let yVal = randomVal(0, maxVal);
         if (document.getElementById('triangleHeight').value) {
-            let triangle = new Triangle(xVal, yVal);
+            let triangle = new Triangle('Triangle', xVal, yVal);
         }
     })
 
