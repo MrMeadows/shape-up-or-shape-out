@@ -1,5 +1,7 @@
 window.addEventListener('DOMContentLoaded', function () {
 
+    // The 'Shape' class is evidently very empty. The only source of inheritance throughout
+    // this entire document, as of now, is the styling in the constructor.
     class Shape {
         constructor(x, y) {
             this.div = document.createElement('div');
@@ -10,6 +12,9 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
     }
+
+    // The repetition of each shape is pretty excruciating.
+    // Although, I believe it to be more readable *because* of the repetition
 
     class Rectangle extends Shape {
         constructor(x, y) {
@@ -24,7 +29,16 @@ window.addEventListener('DOMContentLoaded', function () {
             this.div.addEventListener('dblclick', this.deleteSelf);
         }
 
+        // The 'describe' function, below, is where the repetition becomes harder to digest;
+        // Due to the variable names changing (width, sideLength, radius), the potential
+        // for confusion increases with the conversion to inheritance
+
         describe = () => {
+
+            // The whole "shapeName" and "grammaredShapeName" bit will vanish with inheritance.
+            // This is because, in avoiding inheritance, I also tried to avoid the constructor
+            // arguments as much as possible during object instantiation.
+
             let shapeName = this.div.classList[0].charAt(0).toUpperCase() + this.div.classList[0].slice(1);
             let grammaredShapeName = document.createTextNode(shapeName);
             let widthVal = document.getElementById('rectangleWidth').value;
@@ -42,6 +56,9 @@ window.addEventListener('DOMContentLoaded', function () {
             let clickedShapeArea = document.getElementById('clickedShapeArea');
             let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
 
+            // As I inspect this code for refactorization opportunities, I see that the below
+            // chunk of code can be made simpler with a for loop through an array of the above
+            // variables.
             if (clickedShapeName.childNodes.length > 0) {
                 clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
             }
@@ -69,6 +86,7 @@ window.addEventListener('DOMContentLoaded', function () {
             clickedShapePerimeter.appendChild(shapePerimeter);
         }
 
+        // This could also be refactored into a for loop through an array.
         deleteSelf = () => {
             clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
             clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
