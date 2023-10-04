@@ -5,6 +5,7 @@ window.addEventListener('DOMContentLoaded', function () {
     class Shape {
         constructor(name, x, y) {
             this.div = document.createElement('div');
+            this.div.name = name;
             this.div.style.left = `${x}px`;
             this.div.style.top = `${y}px`;
 
@@ -39,8 +40,6 @@ window.addEventListener('DOMContentLoaded', function () {
             // This is because, in avoiding inheritance, I also tried to avoid the constructor
             // arguments as much as possible during object instantiation.
 
-            let shapeName = this.div.classList[0].charAt(0).toUpperCase() + this.div.classList[0].slice(1);
-            let grammaredShapeName = document.createTextNode(shapeName);
             let widthVal = document.getElementById('rectangleWidth').value;
             let heightVal = document.getElementById('rectangleHeight').value;
             let shapeWidth = document.createTextNode(`${widthVal}px`);
@@ -78,7 +77,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
             }
 
-            clickedShapeName.appendChild(grammaredShapeName);
+            clickedShapeName.appendChild(this.name);
             clickedShapeWidth.appendChild(shapeWidth);
             clickedShapeHeight.appendChild(shapeHeight);
             clickedShapeRadius.appendChild(shapeRadius);
@@ -111,8 +110,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
         describe = () => {
-            let shapeName = this.div.classList[0].charAt(0).toUpperCase() + this.div.classList[0].slice(1);
-            let grammaredShapeName = document.createTextNode(shapeName);
+
             let sideLengthVal = document.getElementById('squareSideLength').value;
             let shapeWidth = document.createTextNode(`${sideLengthVal}px`);
             let shapeHeight = document.createTextNode(`${sideLengthVal}px`);
@@ -146,7 +144,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
             }
 
-            clickedShapeName.appendChild(grammaredShapeName);
+            clickedShapeName.appendChild(this.name);
             clickedShapeWidth.appendChild(shapeWidth);
             clickedShapeHeight.appendChild(shapeHeight);
             clickedShapeRadius.appendChild(shapeRadius);
@@ -178,8 +176,6 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
         describe = () => {
-            let shapeName = this.div.classList[0].charAt(0).toUpperCase() + this.div.classList[0].slice(1);
-            let grammaredShapeName = document.createTextNode(shapeName);
             let radiusVal = document.getElementById('circleRadius').value;
             let shapeWidth = document.createTextNode(`${radiusVal*2}px`);
             let shapeHeight = document.createTextNode(`${radiusVal*2}px`);
@@ -213,7 +209,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
             }
 
-            clickedShapeName.appendChild(grammaredShapeName);
+            clickedShapeName.appendChild(this.name);
             clickedShapeWidth.appendChild(shapeWidth);
             clickedShapeHeight.appendChild(shapeHeight);
             clickedShapeRadius.appendChild(shapeRadius);
@@ -246,8 +242,6 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
         describe = () => {
-            let shapeName = this.div.classList[0].charAt(0).toUpperCase() + this.div.classList[0].slice(1);
-            let grammaredShapeName = document.createTextNode(shapeName);
             let height = document.getElementById('triangleHeight').value;
             let shapeWidth = document.createTextNode(`${height}px`);
             let shapeHeight = document.createTextNode(`${height}px`);
@@ -281,7 +275,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
             }
 
-            clickedShapeName.appendChild(grammaredShapeName);
+            clickedShapeName.appendChild(this.name);
             clickedShapeWidth.appendChild(shapeWidth);
             clickedShapeHeight.appendChild(shapeHeight);
             clickedShapeRadius.appendChild(shapeRadius);
@@ -290,7 +284,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
         deleteSelf = () => {
-            clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
+            clickedShapeName.removeChild(lickedShapeName.childNodes[0]);
             clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
             clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
             clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
