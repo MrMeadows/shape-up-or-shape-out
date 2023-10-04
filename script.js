@@ -3,7 +3,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // The 'Shape' class is evidently very empty. The only source of inheritance throughout
     // this entire document, as of now, is the styling in the constructor.
     class Shape {
-        constructor(x, y) {
+        constructor(name, x, y) {
             this.div = document.createElement('div');
             this.div.style.left = `${x}px`;
             this.div.style.top = `${y}px`;
@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', function () {
     // Although, I believe it to be more readable *because* of the repetition
 
     class Rectangle extends Shape {
-        constructor(x, y) {
+        constructor(width, height) {
             super(x, y)
             let widthVal = document.getElementById('rectangleWidth').value;
             let heightVal = document.getElementById('rectangleHeight').value;
@@ -98,8 +98,8 @@ window.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    class Square extends Shape {
-        constructor(x, y) {
+    class Square extends Rectangle {
+        constructor(sideLength) {
             super(x, y);
             let sideLengthVal = document.getElementById('squareSideLength').value;
             this.div.style.width = `${sideLengthVal}px`;
@@ -166,7 +166,7 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Circle extends Shape {
-        constructor(x, y) {
+        constructor(radius) {
             super(x, y);
             let radiusVal = document.getElementById('circleRadius').value;
             this.div.style.width = `${radiusVal}px`;
@@ -233,7 +233,7 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Triangle extends Shape {
-        constructor(x, y) {
+        constructor(height) {
             super(x, y);
             let height = document.getElementById('triangleHeight').value;
             this.div.style.borderBottom = `${height}px solid #EDD75F`;
