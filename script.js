@@ -12,6 +12,35 @@ window.addEventListener('DOMContentLoaded', function () {
             canvas.appendChild(this.div)
         }
 
+        describe = () => {
+            let shapeWidth = document.createTextNode(`${this.width}px`);
+            let shapeHeight = document.createTextNode(`${this.width}px`);
+            let shapeRadius = document.createTextNode('N/A');
+            let shapeArea = document.createTextNode(`${this.width*this.height}px`);
+            let shapePerimeter = document.createTextNode(`${(this.width*2)+(this.height*2)}px`);
+
+            let clickedShapeName = document.getElementById('clickedShapeName');
+            let clickedShapeWidth = document.getElementById('clickedShapeWidth');
+            let clickedShapeHeight = document.getElementById('clickedShapeHeight');
+            let clickedShapeRadius = document.getElementById('clickedShapeRadius');
+            let clickedShapeArea = document.getElementById('clickedShapeArea');
+            let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
+            let targetArray = [clickedShapeName, clickedShapeWidth, clickedShapeHeight, clickedShapeRadius, clickedShapeArea, clickedShapePerimeter];
+
+            for (let i of targetArray) {
+                if (i.childNodes.length > 0) {
+                    i.removeChild(i.childNodes[0]);
+                }
+            }
+
+            clickedShapeName.appendChild(this.name);
+            clickedShapeWidth.appendChild(shapeWidth);
+            clickedShapeHeight.appendChild(shapeHeight);
+            clickedShapeRadius.appendChild(shapeRadius);
+            clickedShapeArea.appendChild(shapeArea);
+            clickedShapePerimeter.appendChild(shapePerimeter);
+        }
+
     }
 
     // The repetition of each shape is pretty excruciating.
@@ -20,11 +49,13 @@ window.addEventListener('DOMContentLoaded', function () {
     class Rectangle extends Shape {
         constructor(width, height) {
             super(x, y)
-            let widthVal = document.getElementById('rectangleWidth').value;
-            let heightVal = document.getElementById('rectangleHeight').value;
-            this.div.style.width = `${widthVal}px`;
-            this.div.style.height = `${heightVal}px`;
-            this.div.classList.add('rectangle')
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+            this.div.style.width = `${width}px`;
+            this.div.style.height = `${height}px`;
+            this.div.classList.add('rectangle');
 
             this.div.addEventListener('click', this.describe);
             this.div.addEventListener('dblclick', this.deleteSelf);
@@ -40,13 +71,11 @@ window.addEventListener('DOMContentLoaded', function () {
             // This is because, in avoiding inheritance, I also tried to avoid the constructor
             // arguments as much as possible during object instantiation.
 
-            let widthVal = document.getElementById('rectangleWidth').value;
-            let heightVal = document.getElementById('rectangleHeight').value;
-            let shapeWidth = document.createTextNode(`${widthVal}px`);
-            let shapeHeight = document.createTextNode(`${heightVal}px`);
+            let shapeWidth = document.createTextNode(`${this.width}px`);
+            let shapeHeight = document.createTextNode(`${this.width}px`);
             let shapeRadius = document.createTextNode('N/A');
-            let shapeArea = document.createTextNode(`${widthVal*heightVal}px`);
-            let shapePerimeter = document.createTextNode(`${(widthVal*2)+(heightVal*2)}px`);
+            let shapeArea = document.createTextNode(`${this.width*this.height}px`);
+            let shapePerimeter = document.createTextNode(`${(this.width*2)+(this.height*2)}px`);
 
             let clickedShapeName = document.getElementById('clickedShapeName');
             let clickedShapeWidth = document.getElementById('clickedShapeWidth');
@@ -54,28 +83,6 @@ window.addEventListener('DOMContentLoaded', function () {
             let clickedShapeRadius = document.getElementById('clickedShapeRadius');
             let clickedShapeArea = document.getElementById('clickedShapeArea');
             let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
-
-            // As I inspect this code for refactorization opportunities, I see that the below
-            // chunk of code can be made simpler with a for loop through an array of the above
-            // variables.
-            if (clickedShapeName.childNodes.length > 0) {
-                clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
-            }
-            if (clickedShapeWidth.childNodes.length > 0) {
-                clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-            }
-            if (clickedShapeHeight.childNodes.length > 0) {
-                clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-            }
-            if (clickedShapeRadius.childNodes.length > 0) {
-                clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-            }
-            if (clickedShapeArea.childNodes.length > 0) {
-                clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-            }
-            if (clickedShapePerimeter.childNodes.length > 0) {
-                clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-            }
 
             clickedShapeName.appendChild(this.name);
             clickedShapeWidth.appendChild(shapeWidth);
@@ -308,7 +315,9 @@ window.addEventListener('DOMContentLoaded', function () {
     rectangleBtn.addEventListener('click', function () {
         let xVal = randomVal(0, maxVal)
         let yVal = randomVal(0, maxVal)
-        if (document.getElementById('rectangleWidth').value != '' && document.getElementById('rectangleHeight').value != '') {
+        let widthVal = document.getElementById('rectangleWidth').value;
+        let heightVal = document.getElementById('rectangleHeight').value;
+        if (widthVal != '' && heightVal != '') {
             let rectangle = new Rectangle('Rectangle', xVal, yVal)
         }
     })
