@@ -41,6 +41,24 @@ window.addEventListener('DOMContentLoaded', function () {
             clickedShapePerimeter.appendChild(shapePerimeter);
         }
 
+        deleteSelf = () => {
+            let clickedShapeName = document.getElementById('clickedShapeName');
+            let clickedShapeWidth = document.getElementById('clickedShapeWidth');
+            let clickedShapeHeight = document.getElementById('clickedShapeHeight');
+            let clickedShapeRadius = document.getElementById('clickedShapeRadius');
+            let clickedShapeArea = document.getElementById('clickedShapeArea');
+            let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
+            let targetArray = [clickedShapeName, clickedShapeWidth, clickedShapeHeight, clickedShapeRadius, clickedShapeArea, clickedShapePerimeter];
+
+            for (let i of targetArray) {
+                if (i.childNodes.length > 0) {
+                    i.removeChild(i.childNodes[0]);
+                }
+            }
+
+            canvas.removeChild(this.div);
+        }
+
     }
 
     // The repetition of each shape is pretty excruciating.
@@ -59,48 +77,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
             this.div.addEventListener('click', this.describe);
             this.div.addEventListener('dblclick', this.deleteSelf);
-        }
-
-        // The 'describe' function, below, is where the repetition becomes harder to digest;
-        // Due to the variable names changing (width, sideLength, radius), the potential
-        // for confusion increases with the conversion to inheritance
-
-        describe = () => {
-
-            // The whole "shapeName" and "grammaredShapeName" bit will vanish with inheritance.
-            // This is because, in avoiding inheritance, I also tried to avoid the constructor
-            // arguments as much as possible during object instantiation.
-
-            let shapeWidth = document.createTextNode(`${this.width}px`);
-            let shapeHeight = document.createTextNode(`${this.width}px`);
-            let shapeRadius = document.createTextNode('N/A');
-            let shapeArea = document.createTextNode(`${this.width*this.height}px`);
-            let shapePerimeter = document.createTextNode(`${(this.width*2)+(this.height*2)}px`);
-
-            let clickedShapeName = document.getElementById('clickedShapeName');
-            let clickedShapeWidth = document.getElementById('clickedShapeWidth');
-            let clickedShapeHeight = document.getElementById('clickedShapeHeight');
-            let clickedShapeRadius = document.getElementById('clickedShapeRadius');
-            let clickedShapeArea = document.getElementById('clickedShapeArea');
-            let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
-
-            clickedShapeName.appendChild(this.name);
-            clickedShapeWidth.appendChild(shapeWidth);
-            clickedShapeHeight.appendChild(shapeHeight);
-            clickedShapeRadius.appendChild(shapeRadius);
-            clickedShapeArea.appendChild(shapeArea);
-            clickedShapePerimeter.appendChild(shapePerimeter);
-        }
-
-        // This could also be refactored into a for loop through an array.
-        deleteSelf = () => {
-            clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
-            clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-            clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-            clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-            clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-            clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-            canvas.removeChild(this.div);
         }
     }
 
@@ -125,49 +101,8 @@ window.addEventListener('DOMContentLoaded', function () {
             let shapeArea = document.createTextNode(`${(sideLengthVal*sideLengthVal)}px`);
             let shapePerimeter = document.createTextNode(`${sideLengthVal*4}px`);
 
-            let clickedShapeName = document.getElementById('clickedShapeName');
-            let clickedShapeWidth = document.getElementById('clickedShapeWidth');
-            let clickedShapeHeight = document.getElementById('clickedShapeHeight');
-            let clickedShapeRadius = document.getElementById('clickedShapeRadius');
-            let clickedShapeArea = document.getElementById('clickedShapeArea');
-            let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
-
-            if (clickedShapeName.childNodes.length > 0) {
-                clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
-            }
-            if (clickedShapeWidth.childNodes.length > 0) {
-                clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-            }
-            if (clickedShapeHeight.childNodes.length > 0) {
-                clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-            }
-            if (clickedShapeRadius.childNodes.length > 0) {
-                clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-            }
-            if (clickedShapeArea.childNodes.length > 0) {
-                clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-            }
-            if (clickedShapePerimeter.childNodes.length > 0) {
-                clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-            }
-
-            clickedShapeName.appendChild(this.name);
-            clickedShapeWidth.appendChild(shapeWidth);
-            clickedShapeHeight.appendChild(shapeHeight);
-            clickedShapeRadius.appendChild(shapeRadius);
-            clickedShapeArea.appendChild(shapeArea);
-            clickedShapePerimeter.appendChild(shapePerimeter);
         }
 
-        deleteSelf = () => {
-            clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
-            clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-            clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-            clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-            clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-            clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-            canvas.removeChild(this.div);
-        }
     }
 
     class Circle extends Shape {
@@ -190,49 +125,8 @@ window.addEventListener('DOMContentLoaded', function () {
             let shapeArea = document.createTextNode(`${(3.14*radiusVal)**2}px`);
             let shapePerimeter = document.createTextNode(`${2*3.14*radiusVal}px`);
 
-            let clickedShapeName = document.getElementById('clickedShapeName');
-            let clickedShapeWidth = document.getElementById('clickedShapeWidth');
-            let clickedShapeHeight = document.getElementById('clickedShapeHeight');
-            let clickedShapeRadius = document.getElementById('clickedShapeRadius');
-            let clickedShapeArea = document.getElementById('clickedShapeArea');
-            let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
-
-            if (clickedShapeName.childNodes.length > 0) {
-                clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
-            }
-            if (clickedShapeWidth.childNodes.length > 0) {
-                clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-            }
-            if (clickedShapeHeight.childNodes.length > 0) {
-                clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-            }
-            if (clickedShapeRadius.childNodes.length > 0) {
-                clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-            }
-            if (clickedShapeArea.childNodes.length > 0) {
-                clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-            }
-            if (clickedShapePerimeter.childNodes.length > 0) {
-                clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-            }
-
-            clickedShapeName.appendChild(this.name);
-            clickedShapeWidth.appendChild(shapeWidth);
-            clickedShapeHeight.appendChild(shapeHeight);
-            clickedShapeRadius.appendChild(shapeRadius);
-            clickedShapeArea.appendChild(shapeArea);
-            clickedShapePerimeter.appendChild(shapePerimeter);
         }
 
-        deleteSelf = () => {
-            clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
-            clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-            clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-            clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-            clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-            clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-            canvas.removeChild(this.div);
-        }
     }
 
     class Triangle extends Shape {
@@ -256,49 +150,8 @@ window.addEventListener('DOMContentLoaded', function () {
             let shapeArea = document.createTextNode(`${(height*height)/2}px`);
             let shapePerimeter = document.createTextNode(`${height*3}px`);
 
-            let clickedShapeName = document.getElementById('clickedShapeName');
-            let clickedShapeWidth = document.getElementById('clickedShapeWidth');
-            let clickedShapeHeight = document.getElementById('clickedShapeHeight');
-            let clickedShapeRadius = document.getElementById('clickedShapeRadius');
-            let clickedShapeArea = document.getElementById('clickedShapeArea');
-            let clickedShapePerimeter = document.getElementById('clickedShapePerimeter');
-
-            if (clickedShapeName.childNodes.length > 0) {
-                clickedShapeName.removeChild(clickedShapeName.childNodes[0]);
-            }
-            if (clickedShapeWidth.childNodes.length > 0) {
-                clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-            }
-            if (clickedShapeHeight.childNodes.length > 0) {
-                clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-            }
-            if (clickedShapeRadius.childNodes.length > 0) {
-                clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-            }
-            if (clickedShapeArea.childNodes.length > 0) {
-                clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-            }
-            if (clickedShapePerimeter.childNodes.length > 0) {
-                clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-            }
-
-            clickedShapeName.appendChild(this.name);
-            clickedShapeWidth.appendChild(shapeWidth);
-            clickedShapeHeight.appendChild(shapeHeight);
-            clickedShapeRadius.appendChild(shapeRadius);
-            clickedShapeArea.appendChild(shapeArea);
-            clickedShapePerimeter.appendChild(shapePerimeter);
         }
 
-        deleteSelf = () => {
-            clickedShapeName.removeChild(lickedShapeName.childNodes[0]);
-            clickedShapeWidth.removeChild(clickedShapeWidth.childNodes[0]);
-            clickedShapeHeight.removeChild(clickedShapeHeight.childNodes[0]);
-            clickedShapeRadius.removeChild(clickedShapeRadius.childNodes[0]);
-            clickedShapeArea.removeChild(clickedShapeArea.childNodes[0]);
-            clickedShapePerimeter.removeChild(clickedShapePerimeter.childNodes[0]);
-            canvas.removeChild(this.div);
-        }       
     }
 
     let canvas = document.getElementById('canvas');
