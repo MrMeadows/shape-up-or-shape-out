@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', function () {
     class Shape {
         constructor(name, x, y) {
             this.div = document.createElement('div');
-            this.div.name = name;
+            this.name = name;
             this.div.style.left = `${x}px`;
             this.div.style.top = `${y}px`;
 
@@ -13,6 +13,7 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
         describe = () => {
+            let shapeName = document.createTextNode(this.name);
             let shapeWidth = document.createTextNode(`${this.width}px`);
             let shapeHeight = document.createTextNode(`${this.height}px`);
             let shapeRadius = document.createTextNode('N/A');
@@ -33,7 +34,7 @@ window.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            clickedShapeName.appendChild(this.name);
+            clickedShapeName.appendChild(shapeName);
             clickedShapeWidth.appendChild(shapeWidth);
             clickedShapeHeight.appendChild(shapeHeight);
             clickedShapeRadius.appendChild(shapeRadius);
@@ -61,13 +62,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
     }
 
-    // The repetition of each shape is pretty excruciating.
-    // Although, I believe it to be more readable *because* of the repetition
-
     class Rectangle extends Shape {
-        constructor(width, height) {
-            super(x, y)
+        constructor(name, x, y, width, height) {
+            super(name, x, y);
 
+            this.name = name;
             this.x = x;
             this.y = y;
             this.width = width;
@@ -83,8 +82,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
     class Square extends Rectangle {
         constructor(width) {
-            super(x, y);
+            super(name, x, y);
 
+            this.name = name;
             this.width = width;
             this.div.style.width = `${width}px`;
             this.div.style.height = `${width}px`;
@@ -102,8 +102,9 @@ window.addEventListener('DOMContentLoaded', function () {
 
     class Circle extends Shape {
         constructor(radius) {
-            super(x, y);
+            super(name, x, y);
 
+            this.name = name;
             this.radius = radius
             this.div.style.width = `${radius}px`;
             this.div.style.height = `${radius}px`;
@@ -127,6 +128,7 @@ window.addEventListener('DOMContentLoaded', function () {
         constructor(height) {
             super(x, y);
             
+            this.name = name;
             this.height = height;
             this.div.style.borderBottom = `${height}px solid #EDD75F`;
             this.div.style.borderLeft = `${(height/2)}px solid transparent`;
@@ -162,7 +164,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let heightVal = document.getElementById('rectangleHeight').value;
 
         if (widthVal != '' && heightVal != '') {
-            let rectangle = new Rectangle('Rectangle', xVal, yVal)
+            let rectangle = new Rectangle('Rectangle', xVal, yVal, widthVal, heightVal)
         }
     })
 
