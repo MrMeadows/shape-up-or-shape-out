@@ -149,10 +149,11 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Triangle extends Shape {
-        constructor(height) {
-            super(x, y);
+        constructor(name, x, y, height) {
+            super(name, x, y);
             
             this.name = name;
+            this.width = height;
             this.height = height;
             this.div.style.borderBottom = `${height}px solid #EDD75F`;
             this.div.style.borderLeft = `${(height/2)}px solid transparent`;
@@ -164,9 +165,21 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
         describe = () => {
-            let shapeWidth = document.createTextNode(`${height}px`);
-            let shapeArea = document.createTextNode(`${(height*height)/2}px`);
-            let shapePerimeter = document.createTextNode(`${height*3}px`);
+            let shapeWidth = document.createTextNode(`${this.height}px`);
+            let shapeArea = document.createTextNode(`${(this.height*this.height)/2}px`);
+            let shapePerimeter = document.createTextNode(`${this.height*3}px`);
+
+            let targetArrayCircle = [clickedShapeWidth, clickedShapeArea, clickedShapePerimeter];
+
+            for (let i of targetArrayCircle) {
+                if (i.childNodes.length > 0) {
+                    i.removeChild(i.childNodes[0]);
+                }
+            }
+
+            clickedShapeWidth.appendChild(shapeWidth)
+            clickedShapeArea.appendChild(shapeArea);
+            clickedShapePerimeter.appendChild(shapePerimeter);
         }
     }
 
@@ -187,18 +200,17 @@ window.addEventListener('DOMContentLoaded', function () {
         let widthVal = document.getElementById('rectangleWidth').value;
         let heightVal = document.getElementById('rectangleHeight').value;
 
-        if (widthVal != '' && heightVal != '') {
+        if (widthVal && heightVal) {
             let rectangle = new Rectangle('Rectangle', xVal, yVal, widthVal, heightVal)
         }
     })
 
-    //After testing, can convert all 'if' clauses below to input value boolean tests for brevity
     squareBtn.addEventListener('click', function () {
         let xVal = randomVal(0, maxVal);
         let yVal = randomVal(0, maxVal);
         let sideLengthVal = document.getElementById('squareSideLength').value;
 
-        if (document.getElementById('squareSideLength').value != '') {
+        if (document.getElementById('squareSideLength').value) {
             let square = new Square('Square', xVal, yVal, sideLengthVal);
         }
     })
@@ -208,7 +220,7 @@ window.addEventListener('DOMContentLoaded', function () {
         let yVal = randomVal(0, maxVal)
         let radiusVal = document.getElementById('circleRadius').value;
 
-        if (document.getElementById('circleRadius').value != '') {
+        if (document.getElementById('circleRadius').value) {
             let circle = new Circle('Circle', xVal, yVal, radiusVal)
         }
     })
