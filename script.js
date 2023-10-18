@@ -10,6 +10,8 @@ window.addEventListener('DOMContentLoaded', function () {
             this.div.style.top = `${y}px`;
 
             canvas.appendChild(this.div)
+            this.div.addEventListener('click', this.describe);
+            this.div.addEventListener('dblclick', this.deleteSelf);
         }
 
         describe = () => {
@@ -74,9 +76,6 @@ window.addEventListener('DOMContentLoaded', function () {
             this.div.style.width = `${width}px`;
             this.div.style.height = `${height}px`;
             this.div.classList.add('rectangle');
-
-            this.div.addEventListener('click', this.describe);
-            this.div.addEventListener('dblclick', this.deleteSelf);
         }
     }
 
@@ -115,13 +114,14 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Circle extends Shape {
-        constructor(radius) {
+        constructor(name, x, y, radius) {
             super(name, x, y);
 
             this.name = name;
-            this.radius = radius
-            this.div.style.width = `${radius}px`;
-            this.div.style.height = `${radius}px`;
+            this.width = radius * 2;
+            this.height = radius * 2;
+            this.div.style.width = `${this.width}px`;
+            this.div.style.height = `${this.width}px`;
             this.div.classList.add('circle');
 
             this.div.addEventListener('click', this.describe);
@@ -129,11 +129,21 @@ window.addEventListener('DOMContentLoaded', function () {
         }
 
         describe = () => {
-            let shapeWidth = document.createTextNode(`${radius*2}px`);
-            let shapeHeight = document.createTextNode(`${radius*2}px`);
-            let shapeRadius = document.createTextNode(`${radius}px`);
-            let shapeArea = document.createTextNode(`${(3.14*radius)**2}px`);
-            let shapePerimeter = document.createTextNode(`${2*3.14*radius}px`);
+            let shapeRadius = document.createTextNode(`${this.width / 2}px`);
+            let shapeArea = document.createTextNode(`${Math.floor(3.14*this.width)**2}px`);
+            let shapePerimeter = document.createTextNode(`${Math.floor(2*3.14*this.width)}px`);
+
+            let targetArrayCircle = [clickedShapeRadius, clickedShapeArea, clickedShapePerimeter];
+
+            for (let i of targetArrayCircle) {
+                if (i.childNodes.length > 0) {
+                    i.removeChild(i.childNodes[0]);
+                }
+            }
+
+            clickedShapeRadius.appendChild(shapeRadius)
+            clickedShapeArea.appendChild(shapeArea);
+            clickedShapePerimeter.appendChild(shapePerimeter);
         }
 
     }
