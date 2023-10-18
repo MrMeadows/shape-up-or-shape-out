@@ -81,21 +81,35 @@ window.addEventListener('DOMContentLoaded', function () {
     }
 
     class Square extends Rectangle {
-        constructor(width) {
+        constructor(name, x, y, width) {
             super(name, x, y);
 
             this.name = name;
             this.width = width;
             this.div.style.width = `${width}px`;
             this.div.style.height = `${width}px`;
-            this.div.classList.add('square');
+            this.div.classList.replace('rectangle', 'square');
 
             this.div.addEventListener('click', this.describe);
             this.div.addEventListener('dblclick', this.deleteSelf);
         }
 
         describe = () => {
-            let shapeHeight = document.createTextNode(`${width}px`);
+            let shapeHeight = document.createTextNode(`${this.width}px`);
+            let shapeArea = document.createTextNode(`${this.width*this.width}px`);
+            let shapePerimeter = document.createTextNode(`${this.width*4}px`);
+
+            let targetArraySquare = [clickedShapeHeight, clickedShapeArea, clickedShapePerimeter];
+
+            for (let i of targetArraySquare) {
+                if (i.childNodes.length > 0) {
+                    i.removeChild(i.childNodes[0]);
+                }
+            }
+
+            clickedShapeHeight.appendChild(shapeHeight)
+            clickedShapeArea.appendChild(shapeArea);
+            clickedShapePerimeter.appendChild(shapePerimeter);
         }
 
     }
